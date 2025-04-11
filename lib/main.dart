@@ -12,23 +12,41 @@ Future<ConfigModel> loadConfig() async {
   return ConfigModel.fromJson(jsonMap);
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final config = await loadConfig();
+  Gemini.init(apiKey: config.geminiAPIkey);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}): super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'app_scure',
       theme: ThemeData(
+        brightness: Brightness.light,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue[700]!, secondary: Colors.lightBlue[300]!),
+        fontFamily: 'Montserrat',
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(fontSize:16.0),
+        ),
+
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.lightBlue[700],
+          elevation: 0,
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Scure: Skin Lesion Analysis'),
     );
   }
 }
