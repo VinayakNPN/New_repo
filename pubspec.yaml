@@ -1,5 +1,5 @@
 name: app_scure
-description: "A new Flutter project."
+description: "A AI Assistant for Skin Lesion Detection and Classification"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -31,5 +31,7 @@ dev_dependencies:
 
 flutter:  
   uses-material-design: true
+  assets:
+    - assets/config.json
 
   
