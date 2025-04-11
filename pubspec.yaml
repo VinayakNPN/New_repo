@@ -1,5 +1,5 @@
-name: app_scure
-description: "A AI Assistant for Skin Lesion Detection and Classification"
+name: Study-Buddy
+description: "A AI Assistant for Study Purposes"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -34,4 +34,4 @@ flutter:
   assets:
     - assets/config.json
 
-  
+

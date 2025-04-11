@@ -7,9 +7,6 @@
     <application
         android:label="app_scure"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="gemini_chatbot"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
                 
         <activity

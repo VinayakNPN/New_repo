@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Gemini ChatBot",
+          "Study-Buddy",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -214,13 +214,13 @@ class _HomeScreenState extends State<HomeScreen> {
           images: [imageBytes],
         );
         setState(() {
-          result = response?.content?.parts?.last.text$;
+          result = response?.output ?? "No response received";
           isLoading = false;
         });
       } else {
         final response = await gemini.text(promptText);
         setState(() {
-          result = response?.content?.parts?.last.text$;
+          result = response?.output ?? "No response received";
           isLoading = false;
         });
       }
@@ -233,8 +233,4 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-}
-
-extension on Part {
-  String? get text$ => null;
 }

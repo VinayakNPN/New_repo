@@ -7,16 +7,25 @@ import 'home_screen.dart';
 
 
 Future<ConfigModel> loadConfig() async {
-  final jsonString = await rootBundle.loadString('assets/config.json');
-  final jsonMap = json.decode(jsonString);
-  return ConfigModel.fromJson(jsonMap);
+  try {
+    final jsonString = await rootBundle.loadString('assets/config.json');
+    final jsonMap = json.decode(jsonString);
+    return ConfigModel.fromJson(jsonMap);
+  } catch (e) {
+    throw Exception('Failed to load config: $e');
+  }
 }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final config = await loadConfig();
-  Gemini.init(apiKey: config.geminiAPIkey);
-  runApp(const MyApp());
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    final config = await loadConfig();
+    Gemini.init(apiKey: config.geminiAPIkey);
+    runApp(const MyApp());
+  } catch (e) {
+    print('Error initializing app: $e');
+    rethrow;
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +34,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'app_scure',
+      title: 'Study Buddy',
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
